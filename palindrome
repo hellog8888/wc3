@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+int main() {
+    
+    int num, count, count_right, count_left, temp_num, temp_num2, 
+    temp_right_num, temp_left_num;
+
+    count = temp_right_num = temp_left_num = 0;
+    
+    scanf("%d", &num);
+       
+    temp_num = temp_num2 = num;
+
+    while(temp_num > 0) {
+        temp_num /= 10;
+        count++;
+    }
+    
+    bool num_count = count % 2 == 0 ? true : false;
+    
+    if (num_count) {
+        count_right = count_left = count / 2;      
+        while(count_right > 0) {
+            temp_right_num += temp_num2 % 10;
+            temp_num2 /= 10;
+            count_right--;
+        }
+         while(count_left > 0) {
+            temp_left_num += temp_num2 % 10;
+            temp_num2 /= 10;
+            count_left--;
+        }   
+    }
+    else {
+        count_right = count_left = count / 2;    
+        while(count_right > 0) {
+            temp_right_num += temp_num2 % 10;
+            temp_num2 /= 10;
+            count_right--;
+        }
+        temp_num2 /= 10;
+        while(count_left > 0) {
+            temp_left_num += temp_num2 % 10;
+            temp_num2 /= 10;
+            count_left--;
+        }
+    }
+        //printf("\n");
+        //printf("temp_right_num: %d\n", temp_right_num);
+        //printf("temp_left_num: %d\n", temp_left_num);
+
+        printf("%s", temp_right_num == temp_left_num ? "yes" : "no");
+        
+    return 0;
+}
